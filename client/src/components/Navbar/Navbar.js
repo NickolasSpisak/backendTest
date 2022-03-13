@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AppBar, Avatar, Typography, Toolbar, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 
@@ -8,14 +8,14 @@ import useStyles from "./styles.js";
 
 const Navbar = () => {
   const classes = useStyles();
-  const [user, setUser] = useState(JSON.parse(localStoarge.getItem("profile")));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-    history.pushState();
+    navigate.pushState();
     setUser(null);
   };
   useEffect(() => {

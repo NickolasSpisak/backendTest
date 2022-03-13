@@ -15,11 +15,17 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import Input from "./Input";
-import {signin, signup} from "../../.actions/auth";
+import { signin, signup } from "../.././actions/auth";
 import useStyles from "./styles";
 import Icon from "./icon";
 
-const initialState = {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''}, 
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const Auth = () => {
   const classes = useStyles();
@@ -33,14 +39,14 @@ const Auth = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(isSignup){
-      dispatch(signup(formData, history))
+    if (isSignup) {
+      dispatch(signup(formData, navigate));
     } else {
-      dispatch(signin(formData, history))
+      dispatch(signin(formData, navigate));
     }
   };
   const handleChange = (e) => {
-    setFormData({...formData, [e.target.name]: e.target.value})
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
