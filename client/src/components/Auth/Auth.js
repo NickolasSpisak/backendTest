@@ -28,15 +28,15 @@ const initialState = {
 };
 
 const Auth = () => {
-  const classes = useStyles();
-  const { showPassword, setShowPassword } = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const classes = useStyles();
 
-  const handleShowPassword = () =>
-    setShowPassword((prevShowPassword) => !prevShowPassword);
+  const { showPassword, setShowPassword } = useState(false);
+  const handleShowPassword = () => setShowPassword(!showPassword);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignup) {
@@ -50,7 +50,7 @@ const Auth = () => {
   };
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    handleShowPassword(false);
+    setShowPassword(false);
   };
   const googleSuccess = async (res) => {
     const result = res?.profileObj;
