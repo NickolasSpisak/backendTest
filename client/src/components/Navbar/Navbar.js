@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AppBar, Avatar, Typography, Toolbar, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-
-import memories from "../../images/memories.jpeg";
+import decode from "jwt-decode";
 import useStyles from "./styles.js";
 
 const Navbar = () => {
@@ -14,12 +13,17 @@ const Navbar = () => {
   const location = useLocation();
 
   const logout = () => {
-    dispatch({ type: "LOGOUT" });
-    navigate.pushState();
+    dispatch({ actionType: "LOGOUT" });
+    navigate.push("/auth");
     setUser(null);
   };
   useEffect(() => {
     const token = user?.token;
+
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
   return (
@@ -32,7 +36,7 @@ const Navbar = () => {
           variant="h2"
           align="center"
         >
-          Memories
+          Posts
         </Typography>
       </div>
       <Toolbar className={classes.toolbar}>
@@ -63,7 +67,6 @@ const Navbar = () => {
           </Button>
         )}
       </Toolbar>
-      <img className={classes.image} src={memories} alt="icon" height="60" />
     </AppBar>
   );
 };
