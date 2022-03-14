@@ -4,7 +4,7 @@ import { AppBar, Avatar, Typography, Toolbar, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
 import useStyles from "./styles.js";
-
+import * as actionType from "../../constants/actionTypes";
 const Navbar = () => {
   const classes = useStyles();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -13,7 +13,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const logout = () => {
-    dispatch({ actionType: "LOGOUT" });
+    dispatch({ type: actionType.LOGOUT });
     navigate.push("/auth");
     setUser(null);
   };
@@ -22,10 +22,13 @@ const Navbar = () => {
 
     if (token) {
       const decodedToken = decode(token);
+
       if (decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
+
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
+
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <div className={classes.brandContainer}>

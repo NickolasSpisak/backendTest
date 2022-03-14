@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 const CONNECTION_URL =
-  "mongodb+srv://Spish:Lordspish69@cluster0.ju6cf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+  "mongodb+srv://Spish:Lordspish69@cluster0.ju6cf.mongodb.net/backend?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
 
 mongoose
