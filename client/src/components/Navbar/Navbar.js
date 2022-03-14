@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
 import useStyles from "./styles.js";
 import * as actionType from "../../constants/actionTypes";
+
 const Navbar = () => {
   const classes = useStyles();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
