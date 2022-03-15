@@ -18,6 +18,7 @@ const Navbar = () => {
     navigate.push("/auth");
     setUser(null);
   };
+  // eslint-disable-next-line
   useEffect(() => {
     const token = user?.token;
 
