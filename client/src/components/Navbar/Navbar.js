@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AppBar, Avatar, Typography, Toolbar, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import decode from "jwt-decode";
+// import decode from "jwt-decode";
 import useStyles from "./styles.js";
 import * as actionType from "../../constants/actionTypes";
 
@@ -11,7 +11,7 @@ const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
 
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
