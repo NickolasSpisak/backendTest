@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppBar, Avatar, Typography, Toolbar, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 // import decode from "jwt-decode";
@@ -11,7 +11,7 @@ const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const location = useLocation();
+  // const location = useLocation(); add useLocation back to react-router-dom
 
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
