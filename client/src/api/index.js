@@ -10,8 +10,10 @@ API.interceptors.request.use((req) => {
       JSON.parse(localStorage.getItem("profile")).token
     }`;
   }
+
   return req;
 });
+
 export const fetchPosts = () => API.get("/posts");
 export const createPost = (newPost) => API.post("/posts", newPost);
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
