@@ -18,18 +18,18 @@ const Navbar = () => {
     navigate.push("/auth");
     setUser(null);
   };
-  // eslint-disable-next-line
-  useEffect(() => {
-    const token = user?.token;
 
-    if (token) {
-      const decodedToken = decode(token);
+  // useEffect(() => {
+  //   const token = user?.token;
 
-      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
-    }
+  //   if (token) {
+  //     const decodedToken = decode(token);
 
-    setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location]);
+  //     if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+  //   }
+
+  //   setUser(JSON.parse(localStorage.getItem("profile")));
+  // }, [location]);
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
